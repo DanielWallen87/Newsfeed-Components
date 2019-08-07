@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: `Dogs Are Awesome`,
+    date: `August 7, 2019`,
+    firstParagraph: `Dogs`,
+    secondParagraph: `Are`,
+    thirdParagraph: `Awesome`
   }
 ];
 
@@ -120,7 +127,7 @@ console.log(articles);
 
 // Function that creates all the elements necessary for the article component
 
-function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph, buttonSpan) {
+function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph, buttonSpanA, buttonSpanB) {
   const article1 = document.createElement('div');
   const title1 = document.createElement('h2');
   const date1 = document.createElement('p');
@@ -128,6 +135,7 @@ function createArticle (title, date, firstParagraph, secondParagraph, thirdParag
   const secondParagraph1 = document.createElement('p');
   const thirdParagraph1 = document.createElement('p');
   const buttonSpan1 = document.createElement('button');
+  const buttonSpan2 = document.createElement('button');
 
   // Adding elements to the proper place within the page's structure
 
@@ -137,6 +145,7 @@ function createArticle (title, date, firstParagraph, secondParagraph, thirdParag
   article1.append(secondParagraph1);
   article1.append(thirdParagraph1);
   article1.append(buttonSpan1);
+  article1.append(buttonSpan2);
 
   // Attaching class names to ensure elements receive the proper styling
 
@@ -156,6 +165,7 @@ function createArticle (title, date, firstParagraph, secondParagraph, thirdParag
   secondParagraph1.textContent = secondParagraph;
   thirdParagraph1.textContent = thirdParagraph;
   buttonSpan1.textContent = "Click to Read More";
+  buttonSpan2.textContent = "Click to Close the Article";
 
   return article1;
 }

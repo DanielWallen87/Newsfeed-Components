@@ -43,23 +43,25 @@ const header = document.querySelector('.header');
 function createMenu (arr) {
   const menu = document.createElement('div');
   const list = document.createElement('ul');
-  const listItem = document.createElement('li');
 
   menu.appendChild(list);
-  list.appendChild(listItem);
+
+  arr.forEach(element => {
+    const liItem = document.createElement('li');
+    list.appendChild(liItem);
+    liItem.textContent = element;
+  });
 
   menu.classList.add('menu');
-  menu.textContent = arr;
 
   menuButton.addEventListener('click', e => {
     menu.classList.toggle('menu--open');
+    $(menu).animate({left: '250px'});
   })
 
   return menu;
 }
 
 header.prepend(createMenu(menuItems));
-
-//menuItems.forEach(el => menuButton.append(createMenu(el)));
 
 })
