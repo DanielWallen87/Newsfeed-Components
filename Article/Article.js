@@ -109,6 +109,57 @@ const data = [
 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article
 
 */
+
+// Query selector for articles div and confirmation it grabbed the correct element
+
+const articles = document.querySelector('.articles');
+console.log(articles);
+
+// Function that creates all the elements necessary for the article component
+
+function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph, buttonSpan) {
+  const article1 = document.createElement('div');
+  const title1 = document.createElement('h2');
+  const date1 = document.createElement('p');
+  const firstParagraph1 = document.createElement('p');
+  const secondParagraph1 = document.createElement('p');
+  const thirdParagraph1 = document.createElement('p');
+  const buttonSpan1 = document.createElement('button');
+
+  // Adding elements to the proper place within the page's structure
+
+  article1.append(title1);
+  article1.append(date1);
+  article1.append(firstParagraph1);
+  article1.append(secondParagraph1);
+  article1.append(thirdParagraph1);
+  article1.append(buttonSpan1);
+
+  // Attaching class names to ensure elements receive the proper styling
+
+  article1.classList.add('article');
+  article1.classList.toggle('article-open');
+  date1.classList.add('date');
+  buttonSpan1.classList.add('toggle-button');
+  buttonSpan1.classList.add('expandButton');
+
+  buttonSpan1.addEventListener('click', e => {
+    article1.classList.toggle('article-open')
+  })
+
+  title1.textContent = title;
+  date1.textContent = date;
+  firstParagraph1.textContent = firstParagraph;
+  secondParagraph1.textContent = secondParagraph;
+  thirdParagraph1.textContent = thirdParagraph;
+  buttonSpan1.textContent = "Click to Read More";
+
+  return article1;
+}
+
+data.forEach(el => articles.appendChild(createArticle(el.title, el.date, el.firstParagraph, el.secondParagraph, el.thirdParagraph, el.buttonSpan)));
+
+
