@@ -38,6 +38,8 @@ window.addEventListener('load', function(event){
 const menuButton = document.querySelector('.menu-button');
 console.log(menuButton);
 
+const header = document.querySelector('.header');
+
 function createMenu (arr) {
   const menu = document.createElement('div');
   const list = document.createElement('ul');
@@ -46,18 +48,18 @@ function createMenu (arr) {
   menu.appendChild(list);
   list.appendChild(listItem);
 
-  listItem.textContent = arr;
-
   menu.classList.add('menu');
-  menu.classList.toggle('menu--open');
+  menu.textContent = arr;
 
   menuButton.addEventListener('click', e => {
-    menu.style.display = 'block';
+    menu.classList.toggle('menu--open');
   })
 
   return menu;
 }
 
-menuItems.forEach(el => menuButton.append(createMenu(el)));
+header.prepend(createMenu(menuItems));
+
+//menuItems.forEach(el => menuButton.append(createMenu(el)));
 
 })
