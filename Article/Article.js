@@ -150,26 +150,34 @@ function createArticle (title, date, firstParagraph, secondParagraph, thirdParag
   // Attaching class names to ensure elements receive the proper styling
 
   article1.classList.add('article');
-  article1.classList.toggle('article-open');
   date1.classList.add('date');
   buttonSpan1.classList.add('toggle-button');
   buttonSpan1.classList.add('expandButton');
 
+  // Apply button that closes and expands articles for a better view.
+
   buttonSpan1.addEventListener('click', e => {
     article1.classList.toggle('article-open')
   })
+
+  // Applies text contained within argument to the element's "text content" property.
 
   title1.textContent = title;
   date1.textContent = date;
   firstParagraph1.textContent = firstParagraph;
   secondParagraph1.textContent = secondParagraph;
   thirdParagraph1.textContent = thirdParagraph;
-  buttonSpan1.textContent = "Click to Read More";
+  buttonSpan1.textContent = "Click to Read More"; // These two weren't included in the argument and must be defined here.
   buttonSpan2.textContent = "Click to Close the Article";
 
-  return article1;
+  return article1; // The component must return the parent element that contains info within its children to work properly
 }
 
 data.forEach(el => articles.appendChild(createArticle(el.title, el.date, el.firstParagraph, el.secondParagraph, el.thirdParagraph, el.buttonSpan)));
 
+// "For each" data point in this array of information, attach each individual article to the div called articles. 
 
+// Articles is defined at the top. This must happen outside the function in order to be accessed. 
+
+// Articles receieves a function, which creates articles, as a parameter. And the function receives all of the article's
+// content as arguments. 
