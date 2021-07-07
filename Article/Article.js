@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: `Dogs Are Awesome`,
+    date: `August 7, 2019`,
+    firstParagraph: `Dogs`,
+    secondParagraph: `Are`,
+    thirdParagraph: `Awesome`
   }
 ];
 
@@ -109,6 +116,68 @@ const data = [
 
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article
 
 */
+
+// Query selector for articles div and confirmation it grabbed the correct element
+
+const articles = document.querySelector('.articles');
+console.log(articles);
+
+// Function that creates all the elements necessary for the article component
+
+function createArticle (title, date, firstParagraph, secondParagraph, thirdParagraph, buttonSpanA, buttonSpanB) {
+  const article1 = document.createElement('div');
+  const title1 = document.createElement('h2');
+  const date1 = document.createElement('p');
+  const firstParagraph1 = document.createElement('p');
+  const secondParagraph1 = document.createElement('p');
+  const thirdParagraph1 = document.createElement('p');
+  const buttonSpan1 = document.createElement('button');
+  const buttonSpan2 = document.createElement('button');
+
+  // Adding elements to the proper place within the page's structure
+
+  article1.append(title1);
+  article1.append(date1);
+  article1.append(firstParagraph1);
+  article1.append(secondParagraph1);
+  article1.append(thirdParagraph1);
+  article1.append(buttonSpan1);
+  article1.append(buttonSpan2);
+
+  // Attaching class names to ensure elements receive the proper styling
+
+  article1.classList.add('article');
+  date1.classList.add('date');
+  buttonSpan1.classList.add('toggle-button');
+  buttonSpan1.classList.add('expandButton');
+
+  // Apply button that closes and expands articles for a better view.
+
+  buttonSpan1.addEventListener('click', e => {
+    article1.classList.toggle('article-open')
+  })
+
+  // Applies text contained within argument to the element's "text content" property.
+
+  title1.textContent = title;
+  date1.textContent = date;
+  firstParagraph1.textContent = firstParagraph;
+  secondParagraph1.textContent = secondParagraph;
+  thirdParagraph1.textContent = thirdParagraph;
+  buttonSpan1.textContent = "Click to Read More"; // These two weren't included in the argument and must be defined here.
+  buttonSpan2.textContent = "Click to Close the Article";
+
+  return article1; // The component must return the parent element that contains info within its children to work properly
+}
+
+data.forEach(el => articles.appendChild(createArticle(el.title, el.date, el.firstParagraph, el.secondParagraph, el.thirdParagraph, el.buttonSpan)));
+
+// "For each" data point in this array of information, attach each individual article to the div called articles. 
+
+// Articles is defined at the top. This must happen outside the function in order to be accessed. 
+
+// Articles receieves a function, which creates articles, as a parameter. And the function receives all of the article's
+// content as arguments. 
